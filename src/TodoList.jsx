@@ -1,34 +1,52 @@
 import { useState } from "react";
+
 function TodoList() {
-  const [task, setTask] = useState(["initiall Task"]);
+  const [tasks, setTasks] = useState(["Initial Task"]);
   const [newTask, setNewTask] = useState("");
+
+  const handleInputChange = (e) => {
+    setNewTask(e.target.value);
+  };
+
+  const addTask = () => {
+    if (newTask.trim() !== "") {
+      setTasks([...tasks, newTask]);
+      setNewTask("");
+    }
+  };
+
   return (
     <div
       style={{
-        justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         backgroundColor: "lightblue",
+        padding: "20px",
+        borderRadius: "10px",
+        width: "300px",
+        margin: "auto",
       }}
     >
       <h1>Todo List</h1>
       <input
-        placeholder="Enter your task to add to the list"
+        type="text"
+        placeholder="Enter your task"
         value={newTask}
-      ></input>
-      <br></br>
-      <br></br>
-      <button>Add Task</button>
-      <br></br>
-      <br></br>
-      <hr></hr>
-      <br></br>
+        onChange={handleInputChange}
+        style={{ padding: "5px", marginBottom: "10px", width: "100%" }}
+      />
+      <button onClick={addTask} style={{ padding: "5px", cursor: "pointer" }}>
+        Add Task
+      </button>
 
-      <h4>Task ToDoS</h4>
+      <hr style={{ width: "100%", margin: "15px 0" }} />
+
+      <h4>Tasks To Do</h4>
       <ul>
-        {task.map((task) => {
-          // eslint-disable-next-line react/jsx-key
-          return <li>{task}</li>;
-        })}
+        {tasks.map((task, index) => (
+          <li key={index}>{task}</li>
+        ))}
       </ul>
     </div>
   );
