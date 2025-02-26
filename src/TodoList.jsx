@@ -21,7 +21,7 @@ function TodoList() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: "lightblue",
+        backgroundColor: "rgb(120, 154, 131)",
         padding: "20px",
         borderRadius: "10px",
         width: "300px",
